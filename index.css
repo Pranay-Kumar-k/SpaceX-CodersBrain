@@ -1,0 +1,41 @@
+body {
+    background-color: rgb(204, 204, 204);
+}
+.container {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns:20% auto;
+    grid-gap: 5%;
+    height: auto;
+}
+.left {
+    grid-area: "a";
+    border: 2px solid red;
+    padding: 5px;
+}
+.right {
+    grid-area:"b";
+    border: 2px solid black;
+}
+.launch-year {
+    text-align: center;
+}
+.successful-launch {
+    float: left;
+    margin-top: 30px;
+}
+.button {
+    margin: 5px;
+    padding: 10px;
+    float: left;
+    margin-left: 20px;
+    border-radius: 10%;
+    border: none;
+    background-color: lightgreen;
+    font-weight: 500;
+}
+@media only screen and (min-width: 992px) {
+    #services {
+      grid-template:"a b";
+    }
+  } 
