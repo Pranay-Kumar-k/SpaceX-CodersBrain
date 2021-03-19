@@ -10,15 +10,22 @@ body {
 }
 .left {
     grid-area: "a";
-    border: 2px solid red;
-    padding: 5px;
+    padding: 5%;
+    background-color: whitesmoke;
+    margin-left: 4%;
+    border-radius: 1%;
+    height: 700px;
 }
 .right {
     grid-area:"b";
     border: 2px solid black;
+    height: auto;
 }
 .launch-year {
     text-align: center;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto auto auto auto auto auto;
 }
 .successful-launch {
     float: left;
