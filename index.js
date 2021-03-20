@@ -1,26 +1,40 @@
 var arr, launchYear, url;
-url = `http://api.spaceXdata.com/v3/launches`;
+url = `http://api.spaceXdata.com/v3/launches?limit=100`;
 window.onload = () => {
+
+    makeApiCall("http://api.spaceXdata.com/v3/launches?limit=100&launch_year=2006")
+
     document.querySelectorAll("#launch-years > button").forEach((button, index) => {
         button.onclick = (event) => {
           console.log("You clicked button with text " + event.toElement.innerText);
           launchYear = event.toElement.innerText;
-          makeApiCall(url,launchYear)
+          console.log(url+`&launch_year=${launchYear}`)
+          makeApiCall(url+`&launch_year=${launchYear}`)
         }
       })
 
-        makeApiCall(url)
+      document.querySelectorAll("launch-success").forEach((button, index) => {
+        button.onclick = (event) => {
+          console.log("You clicked button with text " + event.toElement.innerText);
+          successfulLaunch = event.toElement.innerText;
+          makeApiCall(url+`&launch_year=${successfulLaunch}`)
+        }
+      })
+
+      document.querySelectorAll("landing-success").forEach((button, index) => {
+        button.onclick = (event) => {
+          console.log("You clicked button with text " + event.toElement.innerText);
+          successfulLanding = event.toElement.innerText;
+          makeApiCall(url+`&land_success=${successfulLanding}`)
+        }
+      })
+
 }
 //Make an api request and get data of programs and rendering it on page in card model
 
-function makeApiCall(url,launchYear,successfulLaunch, successfulLanding) {
-
-    launchYear = launchYear || 2006;
-    successfulLanding = successfulLanding || "";
-    successfulLaunch = successfulLaunch || "" ;
-
+function makeApiCall(url) {
     var xhr = new XMLHttpRequest()
-    xhr.open('GET',url+"?"+launchYear+"&"+successfulLaunch+"&"+successfulLanding);
+    xhr.open('GET',url);
     xhr.setRequestHeader("Accept","application/json")
     xhr.send();
 
@@ -44,6 +58,7 @@ function renderData(arr) {
 
 function renderCard(obj) {
     var rightDiv = document.getElementById("right");
+    rightDiv.innerHTML = "";
     // console.log(obj.links.mission_patch);
 
     var card = document.createElement('div');
@@ -88,7 +103,6 @@ function renderCard(obj) {
     card.setAttribute('id', 'card');
     imageDiv.setAttribute('class', "image-div");
     image.src = obj.links.mission_patch;
-    missionsDiv.setAttribute("id","missions");
 
     imageDiv.append(image);
     missionsDiv.append(missions);
