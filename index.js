@@ -1,8 +1,8 @@
 var arr, launchYear, url;
-url = `http://api.spaceXdata.com/v3/launches?limit=100`;
+url = `https://api.spaceXdata.com/v3/launches?limit=100`;
 window.onload = () => {
 
-    makeApiCall("http://api.spaceXdata.com/v3/launches?limit=100&launch_year=2006")
+    makeApiCall("https://api.spaceXdata.com/v3/launches?limit=100&launch_year=2006")
 
     document.querySelectorAll("#launch-years > button").forEach((button, index) => {
         button.onclick = (event) => {
